@@ -14,18 +14,7 @@
             font-family: 'Poppins', sans-serif;
             background: #f5f5f5;
             overflow-x: hidden;
-        }
-
-        /* ---- Animaciones Scroll ---- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.7s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            scroll-behavior: smooth;
         }
 
         /* NAVBAR */
@@ -47,7 +36,6 @@
             left: 25px;
             height: 40px;
             width: auto;
-            object-fit: contain;
         }
 
         nav .menu {
@@ -120,6 +108,27 @@
             color: #333;
         }
 
+        .fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s ease;
+        }
+
+        .fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LOGO GRANDE */
+        .logo-grande {
+            width: 180px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
         /* VEHICLES */
         .vehicles-container {
             display: grid;
@@ -147,20 +156,46 @@
             object-fit: cover;
         }
 
-        /* LOGO GRANDE */
-        .logo-grande {
-            width: 180px;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.95;
+        .vehicle-card h3 {
+            margin: 15px 0 5px;
+            font-size: 1.3rem;
         }
 
-        /* WhatsApp Button */
+        .vehicle-card p {
+            padding: 0 15px 20px;
+        }
+
+        /* FORM CONTACTO */
+        .form-container {
+            max-width: 450px;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .fechas {
+            display: flex;
+            gap: 12px;
+        }
+
+        .fechas input {
+            flex: 1;
+        }
+
+        /* WHATSAPP BUTTON */
         .whatsapp-btn {
             display: inline-block;
-            margin-top: 20px;
             background: #25D366;
             color: white;
             padding: 15px 35px;
@@ -168,16 +203,18 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            margin-top: 10px;
+            text-align: center;
             box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
         }
 
         .whatsapp-btn:hover {
             background: #1ebe5d;
             transform: scale(1.07);
-            box-shadow: 0px 6px 18px rgba(0,0,0,0.35);
         }
 
+        /* FOOTER */
         footer {
             background: #111;
             color: white;
@@ -203,18 +240,18 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero" id="inicio">
-    <div class="fade-in">
+<div class="hero fade" id="inicio">
+    <div>
         <h1>AC Rental Car Guatemala</h1>
         <p>Alquiler fácil · Rápido · Seguro · Precios accesibles</p>
     </div>
 </div>
 
 <!-- QUIÉNES SOMOS -->
-<section id="quienes" class="fade-in">
-    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande fade-in">
-    <h2 class="fade-in">Quiénes somos</h2>
-    <p class="fade-in">
+<section id="quienes" class="fade">
+    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande">
+    <h2>Quiénes somos</h2>
+    <p>
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
         una experiencia segura, rápida y accesible. Vehículos en excelente estado
         y atención personalizada.
@@ -222,76 +259,98 @@
 </section>
 
 <!-- VEHÍCULOS -->
-<section id="vehiculos" class="fade-in">
-    <h2 class="fade-in">Tipos de vehículos</h2>
+<section id="vehiculos" class="fade">
+    <h2>Tipos de vehículos</h2>
 
     <div class="vehicles-container">
-        <div class="vehicle-card fade-in">
+
+        <div class="vehicle-card fade">
             <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
             <h3>Sedanes</h3>
             <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <div class="vehicle-card fade-in">
+        <div class="vehicle-card fade">
             <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="SUVs">
             <h3>SUVs</h3>
             <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <div class="vehicle-card fade-in">
+        <div class="vehicle-card fade">
             <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Pickups">
             <h3>Pickups</h3>
             <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
         </div>
+
     </div>
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto" class="fade-in">
-    <h2 class="fade-in">Contacto</h2>
-    <p class="fade-in">Escríbenos directamente para disponibilidad, precios y reservas.</p>
+<section id="contacto" class="fade">
+    <h2>Contacto</h2>
+    <p>Completa los datos y te abriremos WhatsApp con un mensaje listo para enviar.</p>
 
-    <a class="whatsapp-btn fade-in"
-       href="https://wa.me/50254324393?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20renta%20de%20veh%C3%ADculos.%20%C2%BFMe%20pueden%20ayudar%3F">
-       💬 Contactar por WhatsApp
-    </a>
+    <div class="form-container">
+        
+        <input type="text" id="nombre" placeholder="Tu nombre" required>
+
+        <div class="fechas">
+            <input type="date" id="fechaInicio" required>
+            <input type="date" id="fechaFin" required>
+        </div>
+
+        <select id="tipoVehiculo" required>
+            <option value="" disabled selected>Selecciona tipo de vehículo</option>
+            <option value="Sedán">Sedán</option>
+            <option value="SUV / Camioneta">SUV / Camioneta</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Van">Van</option>
+        </select>
+
+        <a id="whatsButton" class="whatsapp-btn" href="#">
+            💬 Enviar por WhatsApp
+        </a>
+    </div>
 </section>
 
 <footer>
     © 2025 AC Rental Car Guatemala — Todos los derechos reservados.
 </footer>
 
-<!-- SCROLL SUAVE -->
+<!-- ANIMACIONES DE SCROLL -->
 <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-        const targetID = this.getAttribute("href");
-        if (!targetID || targetID === "#") return;
+const faders = document.querySelectorAll('.fade');
 
-        e.preventDefault();
-        const target = document.querySelector(targetID);
-
-        if (target) {
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-    });
-});
-</script>
-
-<!-- ANIMACIONES AL SCROLLEAR -->
-<script>
-const observer = new IntersectionObserver(entries => {
+const appear = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
+        if (entry.isIntersecting) entry.target.classList.add('show');
     });
 }, { threshold: 0.2 });
 
-document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+faders.forEach(el => appear.observe(el));
+</script>
+
+<!-- FORMULARIO HACIA WHATSAPP -->
+<script>
+document.getElementById("whatsButton").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value.trim();
+    let fechaInicio = document.getElementById("fechaInicio").value;
+    let fechaFin = document.getElementById("fechaFin").value;
+    let tipoVehiculo = document.getElementById("tipoVehiculo").value;
+
+    if (!nombre || !fechaInicio || !fechaFin || !tipoVehiculo) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    let mensaje = `Hola, mi nombre es ${nombre}. Me gustaría alquilar un vehículo tipo ${tipoVehiculo}, para las fechas ${fechaInicio} al ${fechaFin}.`;
+
+    let url = `https://wa.me/50254324393?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+});
 </script>
 
 </body>
