@@ -16,6 +16,18 @@
             overflow-x: hidden;
         }
 
+        /* ---- Animaciones Scroll ---- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* NAVBAR */
         nav {
             position: fixed;
@@ -30,7 +42,6 @@
             z-index: 1000;
         }
 
-        /* LOGO */
         nav .logo {
             position: absolute;
             left: 25px;
@@ -39,7 +50,6 @@
             object-fit: contain;
         }
 
-        /* MENU */
         nav .menu {
             display: flex;
             gap: 30px;
@@ -137,15 +147,6 @@
             object-fit: cover;
         }
 
-        .vehicle-card h3 {
-            margin: 15px 0 5px;
-            font-size: 1.3rem;
-        }
-
-        .vehicle-card p {
-            padding: 0 15px 20px;
-        }
-
         /* LOGO GRANDE */
         .logo-grande {
             width: 180px;
@@ -156,7 +157,7 @@
             opacity: 0.95;
         }
 
-        /* WHATSAPP BUTTON GLOBAL */
+        /* WhatsApp Button */
         .whatsapp-btn {
             display: inline-block;
             margin-top: 20px;
@@ -177,11 +178,6 @@
             box-shadow: 0px 6px 18px rgba(0,0,0,0.35);
         }
 
-        .whatsapp-btn:active {
-            transform: scale(0.96);
-        }
-
-        /* FOOTER */
         footer {
             background: #111;
             color: white;
@@ -208,17 +204,17 @@
 
 <!-- HERO -->
 <div class="hero" id="inicio">
-    <div>
+    <div class="fade-in">
         <h1>AC Rental Car Guatemala</h1>
         <p>Alquiler fácil · Rápido · Seguro · Precios accesibles</p>
     </div>
 </div>
 
 <!-- QUIÉNES SOMOS -->
-<section id="quienes">
-    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande">
-    <h2>Quiénes somos</h2>
-    <p>
+<section id="quienes" class="fade-in">
+    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande fade-in">
+    <h2 class="fade-in">Quiénes somos</h2>
+    <p class="fade-in">
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
         una experiencia segura, rápida y accesible. Vehículos en excelente estado
         y atención personalizada.
@@ -226,38 +222,36 @@
 </section>
 
 <!-- VEHÍCULOS -->
-<section id="vehiculos">
-    <h2>Tipos de vehículos</h2>
+<section id="vehiculos" class="fade-in">
+    <h2 class="fade-in">Tipos de vehículos</h2>
 
     <div class="vehicles-container">
-
-        <div class="vehicle-card">
+        <div class="vehicle-card fade-in">
             <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
             <h3>Sedanes</h3>
             <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <div class="vehicle-card">
+        <div class="vehicle-card fade-in">
             <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="SUVs">
             <h3>SUVs</h3>
             <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <div class="vehicle-card">
+        <div class="vehicle-card fade-in">
             <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Pickups">
             <h3>Pickups</h3>
             <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
         </div>
-
     </div>
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
-    <h2>Contacto</h2>
-    <p>Escríbenos directamente para disponibilidad, precios y reservas.</p>
+<section id="contacto" class="fade-in">
+    <h2 class="fade-in">Contacto</h2>
+    <p class="fade-in">Escríbenos directamente para disponibilidad, precios y reservas.</p>
 
-    <a class="whatsapp-btn"
+    <a class="whatsapp-btn fade-in"
        href="https://wa.me/50254324393?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20renta%20de%20veh%C3%ADculos.%20%C2%BFMe%20pueden%20ayudar%3F">
        💬 Contactar por WhatsApp
     </a>
@@ -267,24 +261,37 @@
     © 2025 AC Rental Car Guatemala — Todos los derechos reservados.
 </footer>
 
-<!-- SCROLL SUAVE PREMIUM -->
+<!-- SCROLL SUAVE -->
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
         const targetID = this.getAttribute("href");
-        if (targetID === "#" || targetID === "") return;
+        if (!targetID || targetID === "#") return;
 
         e.preventDefault();
         const target = document.querySelector(targetID);
 
-        if (!target) return;
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
     });
 });
+</script>
+
+<!-- ANIMACIONES AL SCROLLEAR -->
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
 </script>
 
 </body>
