@@ -21,23 +21,25 @@
             position: fixed;
             top: 0;
             width: 100%;
-            height: 70px;
+            height: 70px; /* Fija altura del navbar para evitar que se mueva */
             background: rgba(0,0,0,0.85);
             backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Centra el menú */
             z-index: 1000;
         }
 
+        /* LOGO alineado a la izquierda sin afectar al menú */
         nav .logo {
             position: absolute;
             left: 25px;
-            height: 40px;
+            height: 40px; 
             width: auto;
             object-fit: contain;
         }
 
+        /* MENÚ */
         nav .menu {
             display: flex;
             gap: 30px;
@@ -80,7 +82,6 @@
         .hero > div {
             position: relative;
             z-index: 2;
-            animation: fadeUp 1.2s ease-out;
         }
 
         .hero h1 {
@@ -109,17 +110,6 @@
             color: #333;
         }
 
-        .logo-grande {
-            width: 180px;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.9s ease;
-        }
-
         /* VEHICLES */
         .vehicles-container {
             display: grid;
@@ -134,9 +124,6 @@
             box-shadow: 0px 4px 15px rgba(0,0,0,0.12);
             overflow: hidden;
             transition: 0.3s;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.7s ease;
         }
 
         .vehicle-card:hover {
@@ -150,21 +137,22 @@
             object-fit: cover;
         }
 
-        /* WHATSAPP BUTTON */
-        .whatsapp-btn {
-            display: inline-block;
-            margin-top: 20px;
-            background: #25D366;
-            color: white;
-            padding: 15px 25px;
-            font-size: 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
+        .vehicle-card h3 {
+            margin: 15px 0 5px;
+            font-size: 1.3rem;
         }
 
-        .whatsapp-btn:hover {
-            background: #1ebe5d;
+        .vehicle-card p {
+            padding: 0 15px 20px;
+        }
+
+        .logo-grande {
+            width: 180px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
         }
 
         /* FOOTER */
@@ -175,24 +163,6 @@
             text-align: center;
             margin-top: 40px;
         }
-
-        /* SCROLL ANIMATIONS */
-        .fade-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.9s ease;
-        }
-
-        .show {
-            opacity: 1 !important;
-            transform: translateY(0) scale(1) !important;
-        }
-
-        /* KEYFRAMES */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 
@@ -201,6 +171,7 @@
 <!-- NAVBAR -->
 <nav>
     <img src="LOGO.png" class="logo" alt="Logo AC Rental Car">
+
     <div class="menu">
         <a href="#inicio">Inicio</a>
         <a href="#quienes">Quiénes somos</a>
@@ -214,14 +185,15 @@
     <div>
         <h1>AC Rental Car Guatemala</h1>
         <p>Alquiler fácil · Rápido · Seguro · Precios accesibles</p>
+        <a class="whatsapp-btn" href="https://wa.me/50254324393">Reservar por WhatsApp</a>
     </div>
 </div>
 
 <!-- QUIÉNES SOMOS -->
 <section id="quienes">
-    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande fade-scroll">
-    <h2 class="fade-scroll">Quiénes somos</h2>
-    <p class="fade-scroll">
+    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande">
+    <h2>Quiénes somos</h2>
+    <p>
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
         una experiencia segura, rápida y accesible. Vehículos en excelente estado
         y atención personalizada.
@@ -230,53 +202,60 @@
 
 <!-- VEHÍCULOS -->
 <section id="vehiculos">
-    <h2 class="fade-scroll">Tipos de vehículos</h2>
+    <h2>Tipos de vehículos</h2>
 
     <div class="vehicles-container">
-        <div class="vehicle-card fade-scroll">
+
+        <div class="vehicle-card">
             <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
             <h3>Sedanes</h3>
             <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <div class="vehicle-card fade-scroll">
+        <div class="vehicle-card">
             <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="SUVs">
             <h3>SUVs</h3>
             <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <div class="vehicle-card fade-scroll">
+        <div class="vehicle-card">
             <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Pickups">
             <h3>Pickups</h3>
             <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
         </div>
+
     </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
-    <h2 class="fade-scroll">Contacto</h2>
-    <p class="fade-scroll">Escríbenos directamente para disponibilidad, precios y reservas.</p>
-    <a class="whatsapp-btn fade-scroll" href="https://wa.me/50254324393">Abrir WhatsApp</a>
+    <h2>Contacto</h2>
+    <p>Escríbenos directamente para disponibilidad, precios y reservas.</p>
+    <a class="whatsapp-btn" href="https://wa.me/50254324393">Abrir WhatsApp</a>
 </section>
 
 <footer>
-    © 2026 AC Rental Car Guatemala — Todos los derechos reservados.
+    © 2025 AC Rental Car Guatemala — Todos los derechos reservados.
 </footer>
 
-<!-- JAVASCRIPT PARA ACTIVAR ANIMACIONES -->
+<!-- 🟢 SCROLL SUAVE PREMIUM -->
 <script>
-    const elements = document.querySelectorAll(".fade-scroll, .vehicle-card");
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+        const targetID = this.getAttribute("href");
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            }
+        if (targetID === "#" || targetID === "") return;
+
+        e.preventDefault();
+        const target = document.querySelector(targetID);
+        if (!target) return;
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
-    }, { threshold: 0.2 });
-
-    elements.forEach(el => observer.observe(el));
+    });
+});
 </script>
 
 </body>
