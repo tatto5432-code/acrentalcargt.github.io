@@ -9,11 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg: #f5f5f5;
+            --text: #222;
+            --card: #fff;
+            --nav-bg: rgba(0,0,0,0.85);
+        }
+
+        body.dark {
+            --bg: #121212;
+            --text: #f0f0f0;
+            --card: #1e1e1e;
+            --nav-bg: rgba(20,20,20,0.85);
+        }
+
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: #f5f5f5;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
+            transition: background 0.4s, color 0.4s;
         }
 
         /* NAVBAR */
@@ -22,19 +38,25 @@
             top: 0;
             width: 100%;
             height: 70px;
-            background: rgba(0,0,0,0.85);
+            background: var(--nav-bg);
             backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            transition: 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(0,0,0,0.65);
+            height: 60px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.5);
         }
 
         nav .logo {
             position: absolute;
             left: 25px;
             height: 40px;
-            object-fit: contain;
         }
 
         nav .menu {
@@ -53,6 +75,20 @@
             color: #ffd35c;
         }
 
+        /* DARK MODE SWITCH */
+        .dark-toggle {
+            position: absolute;
+            right: 25px;
+            cursor: pointer;
+            font-size: 22px;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .dark-toggle:hover {
+            transform: scale(1.2);
+        }
+
         /* HERO */
         .hero {
             position: relative;
@@ -63,7 +99,6 @@
             align-items: center;
             color: white;
             text-align: center;
-            padding: 20px;
         }
 
         .hero::before {
@@ -83,15 +118,13 @@
 
         .hero h1 {
             font-size: 3.4rem;
-            text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
 
         .hero p {
             font-size: 1.5rem;
-            opacity: 0.95;
         }
 
-        /* SECTIONS */
+        /* SECTION BASE */
         section {
             max-width: 1100px;
             margin: auto;
@@ -99,31 +132,34 @@
             text-align: center;
         }
 
-        h2 {
-            font-size: 2.3rem;
-            margin-bottom: 15px;
-            color: #333;
+        /* ANIMACIONES */
+        .fade {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.8s ease-out;
+        }
+        .fade.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* VEHICLES */
+        /* VEHICLE CARDS */
         .vehicles-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
-            margin-top: 40px;
         }
 
         .vehicle-card {
-            background: white;
+            background: var(--card);
             border-radius: 12px;
             box-shadow: 0px 4px 15px rgba(0,0,0,0.12);
-            overflow: hidden;
             transition: 0.3s;
         }
 
         .vehicle-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0px 6px 20px rgba(0,0,0,0.18);
+            transform: scale(1.03);
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.25);
         }
 
         .vehicle-card img {
@@ -132,29 +168,13 @@
             object-fit: cover;
         }
 
-        .vehicle-card h3 {
-            margin: 15px 0 5px;
-        }
-
-        .vehicle-card p {
-            padding: 0 15px 20px;
-        }
-
         /* LOGO GRANDE */
         .logo-grande {
             width: 180px;
             margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        /* FORMULARIO */
-        #contacto p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
+        /* CONTACT FORM */
         .contact-form {
             max-width: 600px;
             margin: auto;
@@ -169,15 +189,15 @@
             padding: 14px;
             border-radius: 10px;
             border: 1px solid #ccc;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
+            background: var(--card);
+            color: var(--text);
+            transition: all 0.3s;
         }
 
         .contact-form input:focus,
         .contact-form select:focus {
             border-color: #25D366;
-            box-shadow: 0px 0px 8px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 0 8px rgba(37,211,102,0.4);
         }
 
         .fechas {
@@ -186,36 +206,38 @@
         }
 
         .field {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
             flex: 1;
+            text-align: left;
         }
 
         .field label {
-            font-size: 14px;
             font-weight: 600;
             margin-bottom: 6px;
-            color: #333;
+            display: block;
+        }
+
+        /* ERROR MESSAGE */
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
         }
 
         /* WHATSAPP BUTTON */
         .whatsapp-btn {
-            display: inline-block;
             background: #25D366;
             color: white;
             padding: 15px 35px;
-            font-size: 20px;
             border-radius: 50px;
+            display: inline-block;
+            font-size: 20px;
             text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
             transition: 0.3s;
         }
 
         .whatsapp-btn:hover {
-            background: #1ebe5d;
             transform: scale(1.07);
+            background: #1ebe5d;
         }
 
         footer {
@@ -223,7 +245,6 @@
             color: white;
             padding: 30px 0;
             text-align: center;
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -231,18 +252,20 @@
 <body>
 
 <!-- NAVBAR -->
-<nav>
-    <img src="LOGO.png" class="logo" alt="Logo AC Rental Car">
+<nav id="navbar">
+    <img src="LOGO.png" class="logo">
     <div class="menu">
         <a href="#inicio">Inicio</a>
         <a href="#quienes">Quiénes somos</a>
         <a href="#vehiculos">Vehículos</a>
         <a href="#contacto">Contacto</a>
     </div>
+
+    <div class="dark-toggle" id="darkToggle">🌙</div>
 </nav>
 
 <!-- HERO -->
-<div class="hero" id="inicio">
+<div class="hero fade" id="inicio">
     <div>
         <h1>AC Rental Car Guatemala</h1>
         <p>Alquiler fácil · Rápido · Seguro · Precios accesibles</p>
@@ -250,74 +273,80 @@
 </div>
 
 <!-- QUIÉNES SOMOS -->
-<section id="quienes">
-    <img src="LOGO.png" class="logo-grande" alt="Logo grande">
+<section id="quienes" class="fade">
+    <img src="LOGO.png" class="logo-grande">
     <h2>Quiénes somos</h2>
     <p>
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
-        una experiencia segura, rápida y accesible. Vehículos en excelente estado
-        y atención personalizada.
+        una experiencia segura, rápida y accesible.
     </p>
 </section>
 
 <!-- VEHÍCULOS -->
-<section id="vehiculos">
+<section id="vehiculos" class="fade">
     <h2>Tipos de vehículos</h2>
 
     <div class="vehicles-container">
 
-        <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
+        <div class="vehicle-card fade">
+            <img src="https://images.unsplash.com/photo-1549924231-f129b911e442">
             <h3>Sedanes</h3>
             <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="SUVs">
+        <div class="vehicle-card fade">
+            <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975">
             <h3>SUVs</h3>
             <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Pickups">
+        <div class="vehicle-card fade">
+            <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023">
             <h3>Pickups</h3>
-            <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
+            <p>Listas para trabajo y aventura.</p>
         </div>
 
     </div>
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
+<section id="contacto" class="fade">
     <h2>Contacto</h2>
-    <p>Completa los datos y te abriremos WhatsApp con un mensaje listo para enviar.</p>
+    <p>Completa los datos y te abrimos WhatsApp con mensaje listo.</p>
 
     <div class="contact-form">
 
-        <input type="text" id="nombre" placeholder="Tu nombre" required>
+        <div>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+            <small class="error" id="errNombre"></small>
+        </div>
 
         <div class="fechas">
             <div class="field">
-                <label for="fechaInicio">Desde</label>
-                <input type="date" id="fechaInicio" required>
+                <label>Desde</label>
+                <input type="date" id="fechaInicio">
+                <small class="error" id="errInicio"></small>
             </div>
 
             <div class="field">
-                <label for="fechaFin">Hasta</label>
-                <input type="date" id="fechaFin" required>
+                <label>Hasta</label>
+                <input type="date" id="fechaFin">
+                <small class="error" id="errFin"></small>
             </div>
         </div>
 
-        <select id="tipoVehiculo" required>
-            <option value="">Selecciona tipo de vehículo</option>
-            <option value="Sedán">Sedán</option>
-            <option value="SUV/Camioneta">SUV / Camioneta</option>
-            <option value="Pickup">Pickup</option>
-            <option value="Van">Van</option>
-        </select>
+        <div>
+            <select id="tipoVehiculo">
+                <option value="">Tipo de vehículo</option>
+                <option value="Sedán">Sedán</option>
+                <option value="SUV/Camioneta">SUV/Camioneta</option>
+                <option value="Pickup">Pickup</option>
+                <option value="Van">Van</option>
+            </select>
+            <small class="error" id="errTipo"></small>
+        </div>
 
         <a class="whatsapp-btn" id="sendWhatsApp">💬 Enviar por WhatsApp</a>
-
     </div>
 </section>
 
@@ -325,34 +354,44 @@
     © 2025 AC Rental Car Guatemala — Todos los derechos reservados.
 </footer>
 
-<!-- SCROLL SUAVE + WHATSAPP BUILDER -->
+
 <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-        const targetID = this.getAttribute("href");
-        if (targetID === "#" || targetID === "") return;
-
-        e.preventDefault();
-        const target = document.querySelector(targetID);
-        if (!target) return;
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    });
+/* NAVBAR DINÁMICO */
+window.addEventListener("scroll", () => {
+    document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
 });
 
-document.getElementById("sendWhatsApp").addEventListener("click", function() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const inicio = document.getElementById("fechaInicio").value;
-    const fin = document.getElementById("fechaFin").value;
-    const tipo = document.getElementById("tipoVehiculo").value;
+/* FADE-IN ANIMATION */
+const elements = document.querySelectorAll(".fade");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+});
+elements.forEach(el => observer.observe(el));
 
-    if (!nombre || !inicio || !fin || !tipo) {
-        alert("Por favor completa todos los campos.");
-        return;
-    }
+/* DARK MODE */
+document.getElementById("darkToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
+
+/* WHATSAPP VALIDATION + MESSAGE BUILDER */
+document.getElementById("sendWhatsApp").addEventListener("click", () => {
+    let ok = true;
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const inicio = document.getElementById("fechaInicio").value.trim();
+    const fin = document.getElementById("fechaFin").value.trim();
+    const tipo = document.getElementById("tipoVehiculo").value.trim();
+
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+
+    if (!nombre) { errNombre.innerText = "Ingrese su nombre"; ok = false; }
+    if (!inicio) { errInicio.innerText = "Seleccione fecha de inicio"; ok = false; }
+    if (!fin) { errFin.innerText = "Seleccione fecha final"; ok = false; }
+    if (!tipo) { errTipo.innerText = "Seleccione un tipo"; ok = false; }
+
+    if (!ok) return;
 
     const mensaje = encodeURIComponent(
         `Hola, mi nombre es ${nombre}. Deseo alquilar un vehículo tipo ${tipo} para las fechas ${inicio} al ${fin}. ¿Me pueden ayudar con una cotización?`
