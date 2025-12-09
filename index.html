@@ -82,7 +82,7 @@
             color: white;
         }
 
-        /* HERO (RESTORED) */
+        /* HERO */
         .hero {
             position: relative;
             background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a")
@@ -129,6 +129,14 @@
             margin: auto;
             padding: 80px 20px;
             text-align: center;
+        }
+
+        /* FIX — LOGO GRANDE CONTROLADO */
+        .logo-grande {
+            width: 160px !important;
+            height: auto !important;
+            display: block;
+            margin: 0 auto 20px auto;
         }
 
         /* VEHICLES */
@@ -236,7 +244,7 @@
     <div class="dark-toggle" id="darkToggle">🌙</div>
 </nav>
 
-<!-- HERO RESTORED -->
+<!-- HERO -->
 <div class="hero fade" id="inicio">
     <div>
         <h1>AC Rental Car Guatemala</h1>
@@ -244,7 +252,7 @@
     </div>
 </div>
 
-<!-- QUIENES SOMOS -->
+<!-- QUIÉNES SOMOS -->
 <section id="quienes" class="fade">
     <img src="LOGO.png" class="logo-grande" alt="Logo AC Rental Car">
     <h2>Quiénes somos</h2>
@@ -254,7 +262,7 @@
     </p>
 </section>
 
-<!-- VEHICULOS -->
+<!-- VEHÍCULOS -->
 <section id="vehiculos" class="fade">
     <h2>Tipos de vehículos</h2>
 
@@ -365,7 +373,7 @@ function formatFecha(fecha) {
 
 /* WhatsApp */
 document.getElementById("sendWhatsApp").addEventListener("click", () => {
-    const nombre = nombre.value.trim();
+    const nombreVal = nombre.value.trim();
     const inicio = fechaInicio.value;
     const fin = fechaFin.value;
     const tipo = tipoVehiculo.value;
@@ -373,7 +381,7 @@ document.getElementById("sendWhatsApp").addEventListener("click", () => {
     let valid = true;
     document.querySelectorAll(".error").forEach(e => e.innerText = "");
 
-    if (!nombre) { errNombre.innerText = "Ingrese su nombre"; valid = false; }
+    if (!nombreVal) { errNombre.innerText = "Ingrese su nombre"; valid = false; }
     if (!inicio) { errInicio.innerText = "Seleccione fecha"; valid = false; }
     if (!fin) { errFin.innerText = "Seleccione fecha"; valid = false; }
     if (!tipo) { errTipo.innerText = "Seleccione un tipo"; valid = false; }
@@ -384,7 +392,7 @@ document.getElementById("sendWhatsApp").addEventListener("click", () => {
     const finFmt = formatFecha(fin);
 
     const mensaje = encodeURIComponent(
-        `Hola, mi nombre es ${nombre}. Deseo alquilar un vehículo tipo ${tipo} para las fechas ${inicioFmt} al ${finFmt}. ¿Me pueden apoyar con una cotización?`
+        `Hola, mi nombre es ${nombreVal}. Deseo alquilar un vehículo tipo ${tipo} para las fechas ${inicioFmt} al ${finFmt}. ¿Me pueden apoyar con una cotización?`
     );
 
     window.open(`https://wa.me/50254324393?text=${mensaje}`, "_blank");
