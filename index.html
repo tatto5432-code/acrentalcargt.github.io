@@ -24,36 +24,42 @@
             background: rgba(0,0,0,0.85);
             backdrop-filter: blur(5px);
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             z-index: 1000;
         }
-        nav a {
+
+        nav img.logo {
+            height: 55px;
+        }
+
+        nav .menu a {
             color: white;
-            margin: 0 20px;
+            margin: 0 15px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
         }
-        nav a:hover {
+
+        nav .menu a:hover {
             color: #ffd35c;
         }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero {
             position: relative;
-            background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
-            height: 88vh;
+            background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a") center/cover no-repeat;
+            height: 90vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
             padding: 20px;
-            animation: fadeIn 2s ease-in-out;
         }
 
-        /* Overlay oscuro */
         .hero::before {
             content: "";
             position: absolute;
@@ -70,16 +76,15 @@
         }
 
         .hero h1 {
-            font-size: 3.6rem;
+            font-size: 3.2rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 18px rgba(0,0,0,0.9);
+            text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 25px;
             opacity: 0.95;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.9);
         }
 
         /* SECTIONS */
@@ -88,7 +93,6 @@
             margin: auto;
             padding: 70px 20px;
             text-align: center;
-            animation: fadeInUp 1s ease forwards;
         }
 
         h2 {
@@ -97,16 +101,10 @@
             color: #333;
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        /* VEHICLE CARDS */
+        /* VEHICLES */
         .vehicles-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
@@ -114,25 +112,25 @@
         .vehicle-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.12);
             overflow: hidden;
             transition: 0.3s;
-            animation: fadeInUp 1s ease;
         }
 
         .vehicle-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0px 6px 25px rgba(0,0,0,0.2);
+            box-shadow: 0px 6px 20px rgba(0,0,0,0.18);
         }
 
         .vehicle-card img {
             width: 100%;
-            height: 160px;
+            height: 180px;
             object-fit: cover;
         }
 
         .vehicle-card h3 {
             margin: 15px 0 5px;
+            font-size: 1.3rem;
         }
 
         .vehicle-card p {
@@ -150,38 +148,18 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
-            transition: 0.3s;
         }
 
         .whatsapp-btn:hover {
             background: #1ebe5d;
-            transform: scale(1.05);
         }
 
-        /* FOOTER */
         footer {
             background: #111;
             color: white;
             padding: 30px 0;
             text-align: center;
             margin-top: 40px;
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
@@ -190,10 +168,13 @@
 
 <!-- NAVBAR -->
 <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#quienes">Quiénes somos</a>
-    <a href="#vehiculos">Vehículos</a>
-    <a href="#contacto">Contacto</a>
+    <img src="LOGO.png" class="logo" alt="Logo AC Rental Car">
+    <div class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#quienes">Quiénes somos</a>
+        <a href="#vehiculos">Vehículos</a>
+        <a href="#contacto">Contacto</a>
+    </div>
 </nav>
 
 <!-- HERO -->
@@ -210,7 +191,8 @@
     <h2>Quiénes somos</h2>
     <p>
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
-        la mejor experiencia: precios accesibles, atención personalizada y vehículos en excelente estado.
+        una experiencia segura, rápida y accesible. Vehículos en excelente estado
+        y atención personalizada.
     </p>
 </section>
 
@@ -220,25 +202,22 @@
 
     <div class="vehicles-container">
 
-        <!-- COROLLA -->
         <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1617814077047-99f0e90a962f" alt="Toyota Corolla">
+            <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
             <h3>Sedanes</h3>
-            <p>Toyota Corolla — eficiente, cómodo y confiable.</p>
+            <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <!-- MAZDA CX-5 -->
         <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="Mazda CX-5">
+            <img src="https://images.unsplash.com/photo-1614282346408-0349fdb7c6aa" alt="SUVs">
             <h3>SUVs</h3>
-            <p>Mazda CX-5 — potencia, estilo y versatilidad.</p>
+            <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <!-- HILUX -->
         <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1603386938094-d3bbdcae5c76" alt="Toyota Hilux">
+            <img src="https://images.unsplash.com/photo-1603386938094-d3bbdcae5c76" alt="Pickups">
             <h3>Pickups</h3>
-            <p>Toyota Hilux — ideal para trabajo, aventura y terreno difícil.</p>
+            <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
         </div>
 
     </div>
@@ -247,7 +226,7 @@
 <!-- CONTACTO -->
 <section id="contacto">
     <h2>Contacto</h2>
-    <p>Puedes escribirnos directamente para disponibilidad, precios y reservas.</p>
+    <p>Escríbenos directamente para disponibilidad, precios y reservas.</p>
     <a class="whatsapp-btn" href="https://wa.me/50254324393">Abrir WhatsApp</a>
 </section>
 
