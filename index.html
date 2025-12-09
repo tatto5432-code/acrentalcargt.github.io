@@ -133,10 +133,10 @@
 
         /* FIX — LOGO GRANDE CONTROLADO */
         .logo-grande {
-            width: 250px !important;         /* antes 160px */
+            width: 250px !important;
             height: auto !important;
             display: block;
-            margin: 0 auto 40px auto;        /* más espacio debajo */
+            margin: 0 auto 40px auto;
         }
 
         /* VEHICLES */
@@ -171,16 +171,26 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            text-align: left;
+
+            /* 🔥 FIX PARA ALINEAR TODO PERFECTO 🔥 */
+            text-align: center !important;
         }
 
         .row {
             display: flex;
             gap: 15px;
+            justify-content: space-between;
         }
 
         .row .field {
             flex: 1;
+        }
+
+        .contact-form label {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .contact-form input,
@@ -192,6 +202,7 @@
             background: var(--card);
             color: var(--text);
             transition: 0.3s;
+            text-align: left;
         }
 
         .contact-form input:focus,
