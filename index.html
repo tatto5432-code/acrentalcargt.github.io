@@ -21,38 +21,26 @@
             position: fixed;
             top: 0;
             width: 100%;
-            height: 70px; /* Fija altura del navbar para evitar que se mueva */
             background: rgba(0,0,0,0.85);
             backdrop-filter: blur(5px);
+            color: white;
+            padding: 15px 40px;
             display: flex;
             align-items: center;
-            justify-content: center; /* Centra el menú */
+            justify-content: center;
+            gap: 40px;
             z-index: 1000;
         }
 
-        /* LOGO alineado a la izquierda sin afectar al menú */
-        nav .logo {
-            position: absolute;
-            left: 25px;
-            height: 40px; /* Tamaño ideal para no deformar el navbar */
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* MENÚ */
-        nav .menu {
-            display: flex;
-            gap: 30px;
-        }
-
-        nav .menu a {
+        nav a {
             color: white;
+            margin: 0 10px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
         }
 
-        nav .menu a:hover {
+        nav a:hover {
             color: #ffd35c;
         }
 
@@ -67,6 +55,7 @@
             color: white;
             text-align: center;
             padding: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .hero::before {
@@ -87,13 +76,16 @@
         .hero h1 {
             font-size: 3.4rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 15px rgba(0,0,0,1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 0.4s;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 25px;
-            opacity: 0.95;
+            opacity: 0;
+            animation: fadeIn 1.3s ease forwards 1s;
         }
 
         /* SECTIONS */
@@ -105,9 +97,27 @@
         }
 
         h2 {
-            font-size: 2.3rem;
+            font-size: 2.4rem;
+            font-weight: 700;
             margin-bottom: 15px;
-            color: #333;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        /* LOGO grande */
+        .logo-big {
+            width: 190px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s ease;
+            margin-bottom: 20px;
         }
 
         /* VEHICLES */
@@ -123,11 +133,13 @@
             border-radius: 12px;
             box-shadow: 0px 4px 15px rgba(0,0,0,0.12);
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
         }
 
         .vehicle-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: 0px 6px 20px rgba(0,0,0,0.18);
         }
 
@@ -135,15 +147,6 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
-        }
-
-        .vehicle-card h3 {
-            margin: 15px 0 5px;
-            font-size: 1.3rem;
-        }
-
-        .vehicle-card p {
-            padding: 0 15px 20px;
         }
 
         /* WHATSAPP BUTTON */
@@ -157,28 +160,38 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            transition: 0.3s;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.4s;
         }
 
         .whatsapp-btn:hover {
             background: #1ebe5d;
         }
 
-        .logo-grande {
-    width: 180px;      /* tamaño ideal */
-    margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto; /* centra la imagen */
-    opacity: 0.95;
-}
-
-        /* FOOTER */
         footer {
             background: #111;
             color: white;
             padding: 30px 0;
             text-align: center;
             margin-top: 40px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CLASE ACTIVADA POR SCROLL */
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
         }
     </style>
 </head>
@@ -187,14 +200,10 @@
 
 <!-- NAVBAR -->
 <nav>
-    <img src="LOGO.png" class="logo" alt="Logo AC Rental Car">
-
-    <div class="menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#quienes">Quiénes somos</a>
-        <a href="#vehiculos">Vehículos</a>
-        <a href="#contacto">Contacto</a>
-    </div>
+    <a href="#inicio">Inicio</a>
+    <a href="#quienes">Quiénes somos</a>
+    <a href="#vehiculos">Vehículos</a>
+    <a href="#contacto">Contacto</a>
 </nav>
 
 <!-- HERO -->
@@ -208,10 +217,9 @@
 
 <!-- QUIÉNES SOMOS -->
 <section id="quienes">
-    <!-- LOGO GRANDE -->
-    <img src="LOGO.png" alt="Logo AC Rental Car" class="logo-grande">
-    <h2>Quiénes somos</h2>
-    <p>
+    <img src="https://raw.githubusercontent.com/tatto5432-code/paginaac/main/LOGO.png" class="logo-big fade-scroll">
+    <h2 class="fade-scroll">Quiénes somos</h2>
+    <p class="content fade-scroll">
         Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
         una experiencia segura, rápida y accesible. Vehículos en excelente estado
         y atención personalizada.
@@ -220,41 +228,54 @@
 
 <!-- VEHÍCULOS -->
 <section id="vehiculos">
-    <h2>Tipos de vehículos</h2>
+    <h2 class="fade-scroll">Tipos de vehículos</h2>
 
     <div class="vehicles-container">
-
-        <div class="vehicle-card">
+        <div class="vehicle-card fade-scroll">
             <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Sedanes">
             <h3>Sedanes</h3>
             <p>Comodidad y eficiencia para tus viajes diarios.</p>
         </div>
 
-        <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1583267746890-2e9d2e2da975" alt="SUVs">
+        <div class="vehicle-card fade-scroll">
+            <img src="https://images.unsplash.com/photo-1614282346408-0349fdb7c6aa" alt="SUVs">
             <h3>SUVs</h3>
             <p>Espacio, potencia y versatilidad para cualquier ruta.</p>
         </div>
 
-        <div class="vehicle-card">
-            <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Pickups">
+        <div class="vehicle-card fade-scroll">
+            <img src="https://images.unsplash.com/photo-1603386938094-d3bbdcae5c76" alt="Pickups">
             <h3>Pickups</h3>
             <p>Listas para trabajo, aventura o viajes fuera de carretera.</p>
         </div>
-
     </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
-    <h2>Contacto</h2>
-    <p>Escríbenos directamente para disponibilidad, precios y reservas.</p>
+    <h2 class="fade-scroll">Contacto</h2>
+    <p class="content fade-scroll">Escríbenos directamente para disponibilidad, precios y reservas.</p>
     <a class="whatsapp-btn" href="https://wa.me/50254324393">Abrir WhatsApp</a>
 </section>
 
 <footer>
     © 2025 AC Rental Car Guatemala — Todos los derechos reservados.
 </footer>
+
+<!-- JS PARA ACTIVAR ANIMACIONES AL HACER SCROLL -->
+<script>
+    const elements = document.querySelectorAll(".fade-scroll, .vehicle-card, h2, .content");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
