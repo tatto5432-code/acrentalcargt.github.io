@@ -151,6 +151,7 @@
             border-radius: 12px;
             box-shadow: 0px 4px 15px rgba(0,0,0,0.12);
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .vehicle-card:hover {
@@ -238,6 +239,60 @@
             padding: 25px 0;
             margin-top: 40px;
         }
+
+        /* -------------------------------------------------- */
+        /* 🔥🔥🔥 MODAL VEHÍCULOS (AGREGADO) 🔥🔥🔥 */
+        /* -------------------------------------------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .modal-content {
+            background: var(--card);
+            color: var(--text);
+            padding: 25px;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            animation: fadeIn 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .models-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .model-card {
+            background: var(--card);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .model-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
     </style>
 </head>
 
@@ -279,19 +334,19 @@
 
     <div class="vehicles-container">
 
-        <div class="vehicle-card fade">
+        <div class="vehicle-card fade" onclick="openModal('sedan')">
             <img src="corolla.jpg">
             <h3>Sedán</h3>
             <p>Económico y eficiente.</p>
         </div>
 
-        <div class="vehicle-card fade">
+        <div class="vehicle-card fade" onclick="openModal('suv')">
             <img src="rav4.jpg">
             <h3>SUV / Camioneta</h3>
             <p>Potencia y confort.</p>
         </div>
 
-        <div class="vehicle-card fade">
+        <div class="vehicle-card fade" onclick="openModal('pickup')">
             <img src="hilux.png">
             <h3>Pickups</h3>
             <p>Trabajo duro y aventura.</p>
@@ -344,6 +399,15 @@
 </section>
 
 <footer>© 2025 AC Rental Car Guatemala — Todos los derechos reservados.</footer>
+
+<!-- 🔥🔥🔥 MODAL HTML AGREGADO 🔥🔥🔥 -->
+<div id="vehicleModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <div class="models-container" id="modelsContainer"></div>
+  </div>
+</div>
 
 <script>
 /* Navbar dinámico */
@@ -408,6 +472,66 @@ document.getElementById("sendWhatsApp").addEventListener("click", () => {
 
     window.open(`https://wa.me/50254324393?text=${mensaje}`, "_blank");
 });
+
+/* ------------------------------------------------------- */
+/* 🔥🔥🔥 MODAL DE VEHÍCULOS (AGREGADO) 🔥🔥🔥 */
+/* ------------------------------------------------------- */
+
+const vehicleData = {
+    sedan: {
+        title: "Modelos Sedán",
+        models: [
+            { name: "Toyota Corolla", img: "corolla.jpg" },
+            { name: "Mazda 3", img: "mazda3.jpg" },
+            { name: "Hyundai Elantra", img: "elantra.jpg" }
+        ]
+    },
+    suv: {
+        title: "Modelos SUV / Camioneta",
+        models: [
+            { name: "Toyota RAV4", img: "rav4.jpg" },
+            { name: "Honda CR-V", img: "crv.jpg" },
+            { name: "Hyundai Tucson", img: "tucson.jpg" }
+        ]
+    },
+    pickup: {
+        title: "Modelos Pickups",
+        models: [
+            { name: "Toyota Hilux", img: "hilux.png" },
+            { name: "Mazda BT-50", img: "bt50.jpg" },
+            { name: "Nissan NP300", img: "np300.jpg" }
+        ]
+    }
+};
+
+function openModal(type) {
+    const modal = document.getElementById("vehicleModal");
+    const title = document.getElementById("modalTitle");
+    const container = document.getElementById("modelsContainer");
+
+    const data = vehicleData[type];
+
+    title.textContent = data.title;
+
+    container.innerHTML = data.models.map(m => `
+        <div class="model-card">
+            <img src="${m.img}" alt="${m.name}">
+            <p><strong>${m.name}</strong></p>
+        </div>
+    `).join("");
+
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("vehicleModal").style.display = "none";
+}
+
+window.onclick = function(e) {
+    const modal = document.getElementById("vehicleModal");
+    if (e.target === modal) modal.style.display = "none";
+}
+
 </script>
 
 </body>
