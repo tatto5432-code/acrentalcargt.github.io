@@ -172,8 +172,6 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-
-            /* 🔥 FIX PARA ALINEAR TODO PERFECTO 🔥 */
             text-align: center !important;
         }
 
@@ -185,6 +183,22 @@
 
         .row .field {
             flex: 1;
+        }
+
+        /* 🔥 FIX unión visual de inputs de fecha */
+        .row {
+            gap: 0 !important;
+        }
+
+        .row .field:first-child input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+
+        .row .field:last-child input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
         .contact-form label {
@@ -241,9 +255,7 @@
             text-align: center;
         }
 
-        /* -------------------------------------------------- */
-        /* 🔥🔥🔥 MODAL VEHÍCULOS (AGREGADO) 🔥🔥🔥 */
-        /* -------------------------------------------------- */
+        /* MODAL VEHÍCULOS */
         .modal {
             display: none;
             position: fixed;
@@ -291,17 +303,17 @@
 
         .model-card img {
             width: 100%;
-            height: 140px;      /* 🔥 tamaño uniforme */
-            object-fit: cover;  /* 🔥 recorta sin deformar */
+            height: 140px;
+            object-fit: cover;
             border-radius: 8px;
         }
 
-    </style>
+</style>
+    
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav id="navbar">
     <img src="LOGO.png" class="logo">
     <div class="menu">
@@ -313,7 +325,6 @@
     <div class="dark-toggle" id="darkToggle">🌙</div>
 </nav>
 
-<!-- HERO -->
 <div class="hero fade" id="inicio">
     <div>
         <h1>AC Rental Car Guatemala</h1>
@@ -321,17 +332,12 @@
     </div>
 </div>
 
-<!-- QUIÉNES SOMOS -->
 <section id="quienes" class="fade">
     <img src="LOGO.png" class="logo-grande" alt="Logo AC Rental Car">
     <h2>Quiénes somos</h2>
-    <p>
-        Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte
-        una experiencia segura, rápida y accesible.
-    </p>
+    <p>Somos una rentadora de vehículos en Guatemala comprometida con ofrecerte una experiencia segura, rápida y accesible.</p>
 </section>
 
-<!-- VEHÍCULOS -->
 <section id="vehiculos" class="fade">
     <h2>Tipos de vehículos</h2>
 
@@ -358,7 +364,6 @@
     </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto" class="fade">
     <h2>Contacto</h2>
     <p>Completa los datos y te abrimos WhatsApp con mensaje listo.</p>
@@ -403,7 +408,6 @@
 
 <footer>© 2025 AC Rental Car Guatemala — Todos los derechos reservados.</footer>
 
-<!-- 🔥🔥🔥 MODAL HTML AGREGADO 🔥🔥🔥 -->
 <div id="vehicleModal" class="modal">
   <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -413,13 +417,11 @@
 </div>
 
 <script>
-/* Navbar dinámico */
 window.addEventListener("scroll", () => {
     const nav = document.getElementById("navbar");
     nav.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* Fade-in */
 const elements = document.querySelectorAll(".fade");
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -428,12 +430,10 @@ const observer = new IntersectionObserver(entries => {
 });
 elements.forEach(el => observer.observe(el));
 
-/* Dark mode */
 document.getElementById("darkToggle").addEventListener("click", () => {
     document.body.classList.toggle("dark");
 });
 
-/* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
         e.preventDefault();
@@ -443,13 +443,11 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
-/* Fecha formateada */
 function formatFecha(fecha) {
     const f = new Date(fecha);
     return f.toLocaleDateString("es-GT", { day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
-/* WhatsApp */
 document.getElementById("sendWhatsApp").addEventListener("click", () => {
     const nombreVal = nombre.value.trim();
     const inicio = fechaInicio.value;
@@ -475,10 +473,6 @@ document.getElementById("sendWhatsApp").addEventListener("click", () => {
 
     window.open(`https://wa.me/50254324393?text=${mensaje}`, "_blank");
 });
-
-/* ------------------------------------------------------- */
-/* 🔥🔥🔥 MODAL DE VEHÍCULOS (AGREGADO) 🔥🔥🔥 */
-/* ------------------------------------------------------- */
 
 const vehicleData = {
     sedan: {
@@ -534,7 +528,6 @@ window.onclick = function(e) {
     const modal = document.getElementById("vehicleModal");
     if (e.target === modal) modal.style.display = "none";
 }
-
 </script>
 
 </body>
